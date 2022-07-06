@@ -16,45 +16,41 @@ use App\Http\Controllers\ListingController;
 | contains the "web" middleware group. Now create something great!
 |
 */
+// All listings
+Route::get('/', [ListingController::class, 'index']);
 
-Route::domain('portfolio1,' . env('APP_URL'))->group(function () {
+// Show Create Form
+Route::get('/listings/create', [ListingController::class, 'create'])->middleware('auth');
 
-    // All listings
-    Route::get('/', [ListingController::class, 'index']);
+// Store Listing Date
+Route::post('/listings', [ListingController::class, 'store'])->middleware('auth');
 
-    // Show Create Form
-    Route::get('/listings/create', [ListingController::class, 'create'])->middleware('auth');
+// Show Edit Form
+Route::get('/listings/{listing}/edit', [ListingController::class, 'edit'])->middleware('auth');
 
-    // Store Listing Date
-    Route::post('/listings', [ListingController::class, 'store'])->middleware('auth');
+// Update Listing
+Route::put('/listings/{listing}', [ListingController::class, 'update'])->middleware('auth');
 
-    // Show Edit Form
-    Route::get('/listings/{listing}/edit', [ListingController::class, 'edit'])->middleware('auth');
+// Delete Listing
+Route::delete('/listings/{listing}', [ListingController::class, 'destroy'])->middleware('auth');
 
-    // Update Listing
-    Route::put('/listings/{listing}', [ListingController::class, 'update'])->middleware('auth');
+// Manage Listings
+Route::get('/listings/manage', [ListingController::class, 'manage'])->middleware('auth');
 
-    // Delete Listing
-    Route::delete('/listings/{listing}', [ListingController::class, 'destroy'])->middleware('auth');
+// Single listing
+Route::get('/listings/{listing}', [ListingController::class, 'show']);
 
-    // Manage Listings
-    Route::get('/listings/manage', [ListingController::class, 'manage'])->middleware('auth');
+// Show Register/Create Form
+Route::get('/register', [UserController::class, 'create'])->middleware('guest');
 
-    // Single listing
-    Route::get('/listings/{listing}', [ListingController::class, 'show']);
+// Create New User
+Route::post('/users', [UserController::class, 'store']);
 
-    // Show Register/Create Form
-    Route::get('/register', [UserController::class, 'create'])->middleware('guest');
+// Log User Out
+Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
 
-    // Create New User
-    Route::post('/users', [UserController::class, 'store']);
+// Show Login Form
+Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
 
-    // Log User Out
-    Route::post('/logout', [UserController::class, 'logout'])->middleware('auth');
-
-    // Show Login Form
-    Route::get('/login', [UserController::class, 'login'])->name('login')->middleware('guest');
-
-    // Log In User
-    Route::post('/users/authenticate', [UserController::class, 'authenticate']);
-});
+// Log In User
+Route::post('/users/authenticate', [UserController::class, 'authenticate']);
