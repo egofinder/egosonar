@@ -17,9 +17,9 @@ use App\Http\Controllers\ListingController;
 |
 */
 
-Route::get('/', function(){
+Route::get('/', function () {
     return 'hihihi';
-})
+});
     // // All listings
     // Route::get('/', [ListingController::class, 'index']);
 
