@@ -33,7 +33,7 @@
                                     class="fa-solid fa-envelope"></i>
                                 Contact Employer</a>
 
-                            <a href="{{ $listing->website }}" target="_blank"
+                            <a href="//{{ $listing->website }}" target="_blank" rel="noreferrer noopener"
                                 class="block bg-default text-white py-2 rounded-xl hover:opacity-80"><i
                                     class="fa-solid fa-globe"></i> Visit
                                 Website</a>
