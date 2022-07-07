@@ -56,7 +56,7 @@ class ListingController extends Controller
 
         Listing::create($formFields);
 
-        return redirect('/')->with('message', 'Added New Listing!');
+        return redirect('/')->with('message', 'Job Added');
     }
 
     // Show Edit From
@@ -90,7 +90,7 @@ class ListingController extends Controller
 
         $listing->update($formFields);
 
-        return redirect('/listings/' . $listing->id)->with('message', 'Listing Updated!');
+        return redirect('/listings/' . $listing->id)->with('message', 'Job Edited');
     }
 
     // Delete Listing
@@ -101,7 +101,7 @@ class ListingController extends Controller
             abort(403, 'Unauthorized Action');
         }
         $listing->delete();
-        return redirect('/')->with('message', "Listing Deleted");
+        return redirect('/')->with('message', "Job Deleted");
     }
 
     // Manage Listing
