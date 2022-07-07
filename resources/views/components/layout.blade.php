@@ -28,7 +28,7 @@
 </head>
 
 <body class="mb-48">
-    <nav class="flex justify-between items-center mb-1 shadow">
+    <nav class="flex justify-between items-center mb-1 shadow sticky top-0 z-50 bg-white">
         <a href="/"><img class="w-40" src="{{ asset('images/Egosonar.png') }}" alt=""
                 class="logo" /></a>
         <ul class="flex space-x-6 mr-6 text-lg">
