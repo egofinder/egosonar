@@ -2,10 +2,9 @@
     <div class="mx-4">
         <x-card class="rounded max-w-lg mx-auto mt-24">
             <header class="text-center">
-                <h2 class="text-2xl font-bold uppercase mb-1">
-                    Edit a Gig
+                <h2 class="text-2xl font-bold uppercase mb-1 mb-10">
+                    Edit a Job Post
                 </h2>
-                <p class="mb-4">Edit: {{ $listing->title }}</p>
             </header>
 
             <form method="POST" action="/listings/{{ $listing->id }}" enctype="multipart/form-data">
@@ -47,7 +46,7 @@
                 @enderror
                 <div class="mb-6">
                     <label for="website" class="inline-block text-lg mb-2">
-                        Website/Application URL
+                        Website URL
                     </label>
                     <input type="text" class="border border-gray-200 rounded p-2 w-full" name="website"
                         value="{{ $listing->website }}" />
@@ -67,21 +66,6 @@
                 @enderror
 
                 <div class="mb-6">
-                    <label for="logo" class="inline-block text-lg mb-2">
-                        Company Logo
-                    </label>
-                    <input type="file" class="border border-gray-200 rounded p-2 w-full" name="logo" />
-
-                    <img class="w-48 mr-6 mb-6"
-                        src="{{ $listing->logo ? asset('storage/' . $listing->logo) : asset('/images/no-image.png') }}"
-                        alt="" />
-
-                    @error('logo')
-                        <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                    @enderror
-                </div>
-
-                <div class="mb-6">
                     <label for="description" class="inline-block text-lg mb-2">
                         Job Description
                     </label>
@@ -92,8 +76,8 @@
                     <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
                 @enderror
                 <div class="mb-6">
-                    <button class="bg-laravel text-white rounded py-2 px-4 hover:bg-black">
-                        Update Gig
+                    <button class="bg-button text-white rounded py-2 px-4 hover:opacity-80">
+                        Update Post
                     </button>
 
                     <a href="/" class="text-black ml-4"> Back </a>

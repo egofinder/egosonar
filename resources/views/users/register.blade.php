@@ -53,7 +53,7 @@
                 <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
             @enderror
             <div class="mb-6">
-                <button type="submit" class="bg-laravel text-white rounded py-2 px-4 hover:bg-black">
+                <button type="submit" class="bg-button text-white rounded py-2 px-4 hover:bg-button_hover">
                     Sign Up
                 </button>
             </div>
@@ -61,7 +61,7 @@
             <div class="mt-8">
                 <p>
                     Already have an account?
-                    <a href="/login" class="text-laravel">Login</a>
+                    <a href="/login" class="text-default">Login</a>
                 </p>
             </div>
         </form>
