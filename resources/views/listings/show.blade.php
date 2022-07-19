@@ -7,10 +7,17 @@
         <div class="mx-4">
             <x-card class="p-24">
                 <div class="flex flex-col items-center justify-center text-center">
-                    <img class="w-48 mr-6 mb-6"
+                    {{-- <img class="w-48 mr-6 mb-6"
                         src="{{ $listing->logo ? asset('storage/' . $listing->logo) : asset('/images/no-image.png') }}"
+                        alt="" /> --}}
+                    <img class="w-48 mr-6 mb-6"
+                        src={{ url('https://api.mapbox.com/styles/v1/mapbox/streets-v11/static/') .
+                            $listing->longitude .
+                            ',' .
+                            $listing->latitude .
+                            ',13/300x300?access_token=' .
+                            env('MAPBOX_ACCESS_TOKEN') }}
                         alt="" />
-
                     <h3 class="text-2xl mb-2">{{ $listing->title }}</h3>
                     <div class="text-xl font-bold mb-4">{{ $listing->company }}</div>
                     <x-listing-tags :tagsCsv="$listing->tags" />

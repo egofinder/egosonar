@@ -1,4 +1,7 @@
 <x-layout>
+    <script src='https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.js'></script>
+    <link href='https://api.mapbox.com/mapbox-gl-js/v2.9.2/mapbox-gl.css' rel='stylesheet' />
+
     <div class="mx-4">
         <x-card class="rounded max-w-lg mx-auto mt-24">
             <header class="text-center">
@@ -29,13 +32,56 @@
                 @enderror
 
                 <div class="mb-6">
-                    <label for="location" class="inline-block text-lg mb-2">Job Location</label>
-                    <input type="text" class="border border-gray-200 rounded p-2 w-full" name="location"
-                        placeholder="Example: Remote, Corona CA, etc" value="{{ old('location') }}" />
+                    <label for="address" class="inline-block text-lg mb-2">Job Location</label>
+                    <!-- Load the `mapbox-gl-geocoder` plugin. -->
+                    <script src="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.min.js"></script>
+                    <link rel="stylesheet"
+                        href="https://api.mapbox.com/mapbox-gl-js/plugins/mapbox-gl-geocoder/v5.0.0/mapbox-gl-geocoder.css"
+                        type="text/css">
+                    <input type="hidden" id="address" name="address" />
+                    <input type="hidden" id="longitude" name="longitude" />
+                    <input type="hidden" id="latitude" name="latitude" />
+
+                    <div id="geocoder"></div>
+                    {{-- <div id="map" style="width:29rem; height:29rem; margin-top:1rem"></div> --}}
+
+
+                    <script>
+                        mapboxgl.accessToken =
+                            '{{ env('MAPBOX_ACCESS_TOKEN') }}';
+
+                        // const map = new mapboxgl.Map({
+                        //     container: 'map',
+                        //     style: 'mapbox://styles/mapbox/streets-v11',
+                        //     center: [-118.2436, 34.0522],
+                        //     zoom: 12
+                        // });
+
+                        var geocoder = new MapboxGeocoder({
+                            accessToken: mapboxgl.accessToken,
+                            mapboxgl: mapboxgl
+                        });
+
+                        geocoder.addTo('#geocoder');
+
+                        // Add the control to the map.
+                        // map.addControl(
+                        //     geocoder
+                        // );
+                        const address = document.getElementById('address');
+                        const longitude = document.getElementById('longitude');
+                        const latitude = document.getElementById('latitude');
+
+
+                        geocoder.on('result', function(result) {
+                            address.value = result.result.place_name;
+                            longitude.value = result.result.center[0];
+                            latitude.value = result.result.center[1];
+                        });
+                    </script>
                 </div>
-                @error('location')
-                    <p class="text-red-500 text-xs mt-1">{{ $message }}</p>
-                @enderror
+
+
                 <div class="mb-6">
                     <label for="email" class="inline-block text-lg mb-2">Contact Email</label>
                     <input type="text" class="border border-gray-200 rounded p-2 w-full" name="email"

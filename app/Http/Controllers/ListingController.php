@@ -42,7 +42,9 @@ class ListingController extends Controller
             'title' => 'required',
             'company' => ['required', Rule::unique('listings', 'company')],
             'website' => 'required',
-            'location' => 'required',
+            'address' => 'required',
+            'longitude' => 'required',
+            'latitude' => 'required',
             'email' => ['required', 'email'],
             'tags' => 'required',
             'description' => 'required'
@@ -78,7 +80,9 @@ class ListingController extends Controller
             'title' => 'required',
             'company' => 'required',
             'website' => 'required',
-            'location' => 'required',
+            'address' => 'required',
+            'longitude' => 'required',
+            'latitude' => 'required',
             'email' => ['required', 'email'],
             'tags' => 'required',
             'description' => 'required'
