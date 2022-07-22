@@ -16,7 +16,7 @@ class ListingController extends Controller
 
         //paginate or simplePaginate
         return view('listings.index', [
-            'listings' => Listing::latest()->filter(request(['tag', 'search']))->paginate(5)
+            'listings' => Listing::latest()->filter(request(['tag', 'search']))->paginate(6)
         ]);
     }
 
