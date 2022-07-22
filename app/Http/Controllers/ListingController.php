@@ -80,9 +80,9 @@ class ListingController extends Controller
             'title' => 'required',
             'company' => 'required',
             'website' => 'required',
-            'address' => 'required',
-            'longitude' => 'required',
-            'latitude' => 'required',
+            // 'address' => 'required',
+            // 'longitude' => 'required',
+            // 'latitude' => 'required',
             'email' => ['required', 'email'],
             'tags' => 'required',
             'description' => 'required'
